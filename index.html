@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para você, com todo o meu amor</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noite:#14060f; --vinho:#2a0f22; --rosa:#e8a0b4; --ouro:#e6c48a; --creme:#f7e9e4;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --script:"Pinyon Script","Snell Roundhand","Brush Script MT",cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--noite);color:var(--creme);font-family:var(--serif);font-size:1.25rem;line-height:1.7}
+section{position:relative;padding:6rem 1.5rem;max-width:44rem;margin:0 auto;text-align:center}
+h2{font-family:var(--script);font-weight:400;font-size:clamp(2.6rem,8vw,4rem);color:var(--rosa);line-height:1.1;margin-bottom:1.5rem}
+p{margin-bottom:1.2rem}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:4px}
+
+/* HERO */
+#hero{max-width:none;height:100svh;min-height:34rem;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  background:radial-gradient(ellipse at 50% 35%,var(--vinho),var(--noite) 70%);overflow:hidden}
+#ceu{position:absolute;inset:0;width:100%;height:100%}
+.hero-txt{position:relative;z-index:2;padding:0 1.5rem 4.5rem;opacity:0;animation:surge 2.5s 3.2s forwards}
+.hero-txt h1{font-family:var(--script);font-weight:400;font-size:clamp(3rem,11vw,6rem);line-height:1.05;color:var(--creme);text-shadow:0 0 30px rgba(232,160,180,.45)}
+.hero-txt p{color:var(--ouro);font-style:italic;margin:.6rem 0 0;font-size:1.3rem}
+.rolar{position:absolute;bottom:1.2rem;left:50%;translate:-50% 0;z-index:2;color:var(--rosa);text-decoration:none;font-size:1.6rem;opacity:0;animation:surge 1.5s 4.5s forwards, flutua 2.4s 4.5s infinite ease-in-out}
+@keyframes surge{to{opacity:1}}
+@keyframes flutua{50%{transform:translateY(8px)}}
+
+/* CONTADOR */
+.tempo{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem 1rem;margin:2.5rem 0 1rem}
+.tempo b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,8vw,3.2rem);color:var(--ouro);line-height:1;font-variant-numeric:tabular-nums}
+.tempo span{font-style:italic;color:var(--rosa);font-size:1.05rem}
+
+/* TEXTO */
+.texto p{font-size:1.4rem}
+.fio{width:1px;height:5rem;background:linear-gradient(var(--rosa),transparent);margin:0 auto}
+
+/* MOTIVOS */
+#motivos{min-height:28rem}
+.coracao{background:none;border:0;cursor:pointer;font-size:5rem;line-height:1;color:var(--rosa);filter:drop-shadow(0 0 18px rgba(232,160,180,.6));animation:bate 1.4s infinite ease-in-out;margin:1rem 0}
+.coracao:active{transform:scale(.88)}
+@keyframes bate{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+.dica{font-style:italic;color:var(--ouro);font-size:1.05rem}
+#motivo{min-height:7.5rem;font-size:1.6rem;font-style:italic;margin-top:1.5rem;transition:opacity .5s}
+#motivo.sai{opacity:0}
+
+/* CARTA */
+.carta{max-width:30rem;margin:2rem auto 0;cursor:pointer;position:relative}
+.envelope{background:linear-gradient(160deg,#4a1a36,#2a0f22);border:1px solid rgba(230,196,138,.4);border-radius:6px;padding:3rem 1.5rem;
+  font-family:var(--script);font-size:2.2rem;color:var(--ouro);transition:transform .4s}
+.carta:hover .envelope{transform:translateY(-4px)}
+.conteudo{display:grid;grid-template-rows:0fr;transition:grid-template-rows 1.2s ease}
+.conteudo>div{overflow:hidden}
+.carta.aberta .envelope{display:none}
+.carta.aberta .conteudo{grid-template-rows:1fr}
+.papel{background:var(--creme);color:#3b1f2b;text-align:left;padding:2.2rem 1.8rem;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.papel p{font-size:1.2rem}
+.papel .assin{font-family:var(--script);font-size:2.2rem;color:#8a2447;text-align:right;margin:1.5rem 0 0}
+
+/* FINAL */
+#fim{padding-bottom:8rem}
+#fim .grande{font-family:var(--script);font-size:clamp(3rem,12vw,5.5rem);color:var(--rosa);line-height:1.1}
+
+#chuva{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.pet{position:absolute;top:-2rem;animation:cai linear forwards}
+@keyframes cai{to{transform:translateY(110vh) rotate(360deg)}}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01s!important;animation-delay:0s!important;animation-iteration-count:1!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <canvas id="ceu" aria-hidden="true"></canvas>
+  <div class="hero-txt">
+    <h1 id="nomes">Para você, meu amor</h1>
+    <p>Feito com carinho, só para você</p>
+  </div>
+  <a class="rolar" href="#tempo" aria-label="Rolar para baixo">⌄</a>
+</header>
+
+<section id="tempo">
+  <h2>Nosso tempo juntos</h2>
+  <p>Cada segundo ao seu lado valeu a pena. E o relógio continua rodando.</p>
+  <div class="tempo" aria-live="off">
+    <div><b id="t-anos">0</b><span>anos</span></div>
+    <div><b id="t-meses">0</b><span>meses</span></div>
+    <div><b id="t-dias">0</b><span>dias</span></div>
+    <div><b id="t-horas">0</b><span>horas</span></div>
+    <div><b id="t-min">0</b><span>minutos</span></div>
+    <div><b id="t-seg">0</b><span>segundos</span></div>
+  </div>
+</section>
+
+<div class="fio"></div>
+
+<section class="texto" id="texto">
+  <h2>Antes de você</h2>
+  <p>Eu não sabia que dava para sentir saudade de alguém no meio de um dia comum. Hoje eu sei, porque é isso que acontece sempre que você não está por perto.</p>
+  <p>Você chegou de um jeito tão natural que parece que sempre esteve aqui. Seu riso mudou o som da minha casa, e seu abraço virou o lugar onde eu quero ficar.</p>
+  <p>Eu não sou perfeito, mas o que eu sinto por você é a coisa mais verdadeira que eu já tive.</p>
+</section>
+
+<div class="fio"></div>
+
+<section id="motivos">
+  <h2>Motivos pelos quais eu te amo</h2>
+  <p class="dica" id="dica">Toque no coração</p>
+  <button class="coracao" id="btn-motivo" aria-label="Mostrar um motivo">♥</button>
+  <p id="motivo" aria-live="polite"></p>
+</section>
+
+<div class="fio"></div>
+
+<section id="carta-sec">
+  <h2>Uma carta para você</h2>
+  <div class="carta" id="carta" role="button" tabindex="0" aria-expanded="false">
+    <div class="envelope">Toque para abrir ✉</div>
+    <div class="conteudo"><div>
+      <div class="papel">
+        <p>Meu amor,</p>
+        <p>Eu queria ter palavras do tamanho do que eu sinto, mas elas nunca dão conta. Então fiz este cantinho para você, para lembrar nos dias bons e nos difíceis que alguém aqui te ama de verdade.</p>
+        <p>Obrigado por cuidar de mim, por me aguentar nos meus piores dias e por comemorar comigo os melhores. Você me faz querer ser alguém melhor, todos os dias.</p>
+        <p>Eu prometo continuar escolhendo você, hoje, amanhã e em todas as outras manhãs que vierem.</p>
+        <p class="assin">Com todo o meu amor,<br><span id="assina">seu amor</span></p>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<section id="fim">
+  <p class="grande">Eu te amo</p>
+  <p style="margin-top:1.5rem;font-style:italic;color:var(--ouro)">Hoje, amanhã e sempre.</p>
+  <button class="coracao" id="btn-chuva" aria-label="Chuva de pétalas" style="font-size:3rem;animation:none">🌹</button>
+</section>
+
+<div id="chuva" aria-hidden="true"></div>
+
+<script>
+/* ============ PERSONALIZE AQUI ============ */
+const CONFIG = {
+  titulo: "Para você, meu amor",          // título principal
+  assinatura: "seu amor",                  // nome que assina a carta
+  inicio: "2023-01-01T00:00:00",           // data em que vocês começaram (ano-mês-dia)
+  motivos: [
+    "Seu sorriso conserta qualquer dia ruim.",
+    "Você me faz rir até quando eu não quero.",
+    "Seu abraço é o meu lugar favorito.",
+    "Você acredita em mim mais do que eu mesmo.",
+    "Do seu jeito, você deixa tudo mais leve.",
+    "Eu sou mais feliz quando você está por perto.",
+    "Você cuida de mim sem eu precisar pedir.",
+    "Com você, até o silêncio é bom."
+  ]
+};
+/* ========================================== */
+
+document.getElementById("nomes").textContent = CONFIG.titulo;
+document.getElementById("assina").textContent = CONFIG.assinatura;
+const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---- Céu: estrelas formam um coração ---- */
+(function(){
+  const c = document.getElementById("ceu"), x = c.getContext("2d");
+  let W, H, P = [], t0 = performance.now();
+  function medir(){
+    const d = devicePixelRatio || 1, r = c.getBoundingClientRect();
+    W = r.width; H = r.height; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0);
+    const s = Math.min(W, H*.8) / 38, cx = W/2, cy = H*.36;
+    P.forEach((p,i)=>{ const a = i/P.length*Math.PI*2, k = p.anel;
+      p.tx = cx + 16*Math.pow(Math.sin(a),3)*s*k;
+      p.ty = cy - (13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a))*s*k; });
+  }
+  for(let i=0;i<220;i++){
+    P.push({ sx:Math.random(), sy:Math.random(), anel:i%3===0 ? .55+Math.random()*.3 : .96+Math.random()*.08,
+      r:.6+Math.random()*1.6, f:Math.random()*6, atraso:Math.random()*1200 });
+  }
+  medir(); addEventListener("resize", medir);
+  const ease = v => 1-Math.pow(1-v,3);
+  function quadro(now){
+    const t = now - t0; x.clearRect(0,0,W,H);
+    for(const p of P){
+      const k = reduz ? 1 : ease(Math.min(Math.max((t-p.atraso)/2800,0),1));
+      const px = p.sx*W + (p.tx-p.sx*W)*k, py = p.sy*H + (p.ty-p.sy*H)*k;
+      const pulso = .55 + .45*Math.sin(t/600 + p.f);
+      const bate = 1 + (k===1 ? .03*Math.sin(t/330) : 0);
+      x.beginPath(); x.arc(px, py, p.r*bate, 0, 6.283);
+      x.fillStyle = (p.r>1.6 ? "rgba(230,196,138," : "rgba(247,200,215,") + pulso + ")";
+      x.shadowColor = "rgba(232,160,180,.9)"; x.shadowBlur = 8; x.fill();
+    }
+    requestAnimationFrame(quadro);
+  }
+  requestAnimationFrame(quadro);
+})();
+
+/* ---- Contador ---- */
+(function(){
+  const ini = new Date(CONFIG.inicio), el = id => document.getElementById(id);
+  function tick(){
+    const ag = new Date(); let a = ag.getFullYear()-ini.getFullYear(), m = ag.getMonth()-ini.getMonth();
+    let ref = new Date(ini); ref.setFullYear(ini.getFullYear()+a, ini.getMonth()+m);
+    if(ref > ag){ m--; if(m<0){ m+=12; a--; } ref = new Date(ini); ref.setFullYear(ini.getFullYear()+a, ini.getMonth()+m); }
+    let s = Math.floor((ag-ref)/1000);
+    const d = Math.floor(s/86400); s%=86400;
+    const h = Math.floor(s/3600); s%=3600;
+    el("t-anos").textContent = a; el("t-meses").textContent = m; el("t-dias").textContent = d;
+    el("t-horas").textContent = h; el("t-min").textContent = Math.floor(s/60); el("t-seg").textContent = s%60;
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* ---- Motivos ---- */
+(function(){
+  const btn = document.getElementById("btn-motivo"), box = document.getElementById("motivo"), dica = document.getElementById("dica");
+  let i = 0;
+  btn.addEventListener("click", ()=>{
+    dica.textContent = i < CONFIG.motivos.length ? "Mais um motivo?" : "Tenho mais um milhão deles";
+    box.classList.add("sai");
+    setTimeout(()=>{
+      box.textContent = "“" + CONFIG.motivos[i % CONFIG.motivos.length] + "”";
+      box.classList.remove("sai"); i++;
+    }, 350);
+  });
+})();
+
+/* ---- Carta ---- */
+(function(){
+  const c = document.getElementById("carta");
+  const abrir = ()=>{ c.classList.add("aberta"); c.setAttribute("aria-expanded","true"); };
+  c.addEventListener("click", abrir);
+  c.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrir(); } });
+})();
+
+/* ---- Chuva de pétalas ---- */
+document.getElementById("btn-chuva").addEventListener("click", ()=>{
+  if(reduz) return;
+  const box = document.getElementById("chuva"), simb = ["🌹","💗","🌸","✨","💕"];
+  for(let i=0;i<40;i++){
+    const p = document.createElement("span"); p.className = "pet";
+    p.textContent = simb[i % simb.length];
+    p.style.left = Math.random()*100 + "vw"; p.style.fontSize = (1+Math.random()*1.4) + "rem";
+    p.style.animationDuration = (4+Math.random()*4) + "s"; p.style.animationDelay = Math.random()*2 + "s";
+    box.appendChild(p); setTimeout(()=>p.remove(), 10000);
+  }
+});
+</script>
+</body>
+</html>
