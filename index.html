@@ -4,71 +4,143 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Para você, com todo o meu amor</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔴</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
 <style>
 :root{
-  --noite:#14060f; --vinho:#2a0f22; --rosa:#e8a0b4; --ouro:#e6c48a; --creme:#f7e9e4;
-  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-  --script:"Pinyon Script","Snell Roundhand","Brush Script MT",cursive;
+  --preto:#050203; --sangue:#e50914; --vermelho:#ff2a3a; --brasa:#7a0a12; --papel:#d8c6a0; --tinta:#2b1a12; --azul:#4fb3ff;
+  --titulo:"Cinzel","Times New Roman",serif;
+  --maquina:"Special Elite","Courier New",monospace;
+  --digital:"VT323","Courier New",monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--noite);color:var(--creme);font-family:var(--serif);font-size:1.25rem;line-height:1.7}
+body{background:var(--preto);color:#f1dede;font-family:var(--maquina);font-size:1.1rem;line-height:1.75;overflow-x:hidden}
+body.bloqueado{overflow:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:49;
+  background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.85) 100%)}
 section{position:relative;padding:6rem 1.5rem;max-width:44rem;margin:0 auto;text-align:center}
-h2{font-family:var(--script);font-weight:400;font-size:clamp(2.6rem,8vw,4rem);color:var(--rosa);line-height:1.1;margin-bottom:1.5rem}
+.cap{font-family:var(--digital);letter-spacing:.35em;color:var(--vermelho);font-size:1.3rem;text-transform:uppercase;opacity:.9}
+h2{font-family:var(--titulo);font-weight:900;font-size:clamp(1.9rem,6vw,3rem);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--sangue);text-shadow:0 0 6px var(--sangue),0 0 22px rgba(229,9,20,.7),0 0 50px rgba(229,9,20,.4);line-height:1.15;margin:.4rem 0 1.8rem}
 p{margin-bottom:1.2rem}
-:focus-visible{outline:2px solid var(--ouro);outline-offset:4px}
+:focus-visible{outline:2px solid var(--azul);outline-offset:4px}
+#mundo{transition:filter 1.2s}
+body.invertido #mundo{filter:hue-rotate(195deg) saturate(.9) brightness(.95)}
 
-/* HERO */
-#hero{max-width:none;height:100svh;min-height:34rem;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  background:radial-gradient(ellipse at 50% 35%,var(--vinho),var(--noite) 70%);overflow:hidden}
-#ceu{position:absolute;inset:0;width:100%;height:100%}
-.hero-txt{position:relative;z-index:2;padding:0 1.5rem 4.5rem;opacity:0;animation:surge 2.5s 3.2s forwards}
-.hero-txt h1{font-family:var(--script);font-weight:400;font-size:clamp(3rem,11vw,6rem);line-height:1.05;color:var(--creme);text-shadow:0 0 30px rgba(232,160,180,.45)}
-.hero-txt p{color:var(--ouro);font-style:italic;margin:.6rem 0 0;font-size:1.3rem}
-.rolar{position:absolute;bottom:1.2rem;left:50%;translate:-50% 0;z-index:2;color:var(--rosa);text-decoration:none;font-size:1.6rem;opacity:0;animation:surge 1.5s 4.5s forwards, flutua 2.4s 4.5s infinite ease-in-out}
-@keyframes surge{to{opacity:1}}
+#esporos{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+#raio{position:fixed;inset:0;pointer-events:none;z-index:4;background:radial-gradient(circle at 50% 0,rgba(255,60,60,.55),rgba(255,255,255,.12) 50%,transparent 75%);opacity:0}
+#raio.zap{animation:zap .9s}
+@keyframes zap{0%{opacity:0}6%{opacity:1}12%{opacity:.1}20%{opacity:.8}40%{opacity:0}100%{opacity:0}}
+
+/* ENTRADA */
+#entrada{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:1.5rem;text-align:center;transition:opacity 1.6s}
+#entrada.some{opacity:0;pointer-events:none}
+#entrada h1{font-family:var(--titulo);font-weight:900;font-size:clamp(2.2rem,9vw,5rem);letter-spacing:.12em;text-transform:uppercase;line-height:1.1;
+  color:var(--sangue);text-shadow:0 0 8px var(--sangue),0 0 40px rgba(229,9,20,.8);animation:pisca 5s infinite}
+#entrada h1 small{display:block;font-family:var(--digital);font-weight:400;font-size:.32em;letter-spacing:.5em;color:#ffb0b6;margin-bottom:.6rem;text-shadow:none}
+#entrar{font-family:var(--digital);font-size:1.7rem;letter-spacing:.25em;text-transform:uppercase;color:#fff;background:transparent;
+  border:2px solid var(--sangue);padding:.6rem 1.6rem;cursor:pointer;box-shadow:0 0 14px rgba(229,9,20,.6),inset 0 0 14px rgba(229,9,20,.35);transition:.3s}
+#entrar:hover{background:var(--sangue);box-shadow:0 0 30px var(--sangue)}
+#entrada .aviso{font-family:var(--digital);color:#8d6b6e;font-size:1.1rem;letter-spacing:.15em}
+@keyframes pisca{0%,18%,22%,62%,64%,100%{opacity:1}20%,63%{opacity:.35}21%{opacity:.8}}
+
+/* PLAYER (rádio) */
+#radio{position:fixed;top:.8rem;right:.8rem;z-index:60;display:flex;align-items:center;gap:.7rem;padding:.5rem .8rem;
+  background:linear-gradient(#1b0d0f,#0b0405);border:1px solid #5a1a20;border-radius:8px;box-shadow:0 0 16px rgba(229,9,20,.35)}
+#led{width:.6rem;height:.6rem;border-radius:50%;background:var(--sangue);box-shadow:0 0 10px var(--sangue);animation:led 1.6s infinite}
+#radio.mudo #led{animation:none;background:#3a1014;box-shadow:none}
+@keyframes led{50%{opacity:.35}}
+#radio .faixa{font-family:var(--digital);font-size:1.15rem;letter-spacing:.12em;color:#ffb0b6;white-space:nowrap}
+#radio .faixa b{font-weight:400;color:var(--vermelho)}
+#mutar{background:none;border:1px solid #5a1a20;border-radius:6px;color:var(--vermelho);width:2.2rem;height:2.2rem;cursor:pointer;display:grid;place-items:center;transition:.2s}
+#mutar:hover{background:rgba(229,9,20,.2)}
+#mutar svg{width:1.3rem;height:1.3rem;fill:currentColor}
+#radio.mudo #mutar .on{display:none}
+#radio:not(.mudo) #mutar .off{display:none}
+#volume{-webkit-appearance:none;appearance:none;width:6.5rem;height:.35rem;border-radius:4px;background:linear-gradient(90deg,var(--sangue) var(--v,50%),#3a1a1d var(--v,50%));outline-offset:6px;cursor:pointer}
+#volume::-webkit-slider-thumb{-webkit-appearance:none;width:1rem;height:1rem;border-radius:50%;background:#ffd0d4;border:2px solid var(--sangue);box-shadow:0 0 10px var(--sangue)}
+#volume::-moz-range-thumb{width:.8rem;height:.8rem;border-radius:50%;background:#ffd0d4;border:2px solid var(--sangue);box-shadow:0 0 10px var(--sangue)}
+#faltaMusica{display:none;position:fixed;top:4.4rem;right:.8rem;z-index:60;max-width:15rem;font-family:var(--digital);font-size:1.1rem;line-height:1.2;color:#ffb0b6;background:#1b0d0f;border:1px solid #5a1a20;padding:.5rem .7rem;border-radius:6px}
+@media(max-width:560px){#radio .faixa{display:none}#volume{width:5rem}}
+
+/* HERO: parede de luzes */
+#hero{min-height:100svh;padding:4.5rem 1rem 3rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;max-width:none;
+  background:radial-gradient(ellipse at 50% 30%,#2a070b,var(--preto) 70%)}
+.parede{width:min(34rem,94vw);padding:1.4rem .8rem 1rem;border-radius:6px;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0 6px,transparent 6px 14px),linear-gradient(#1a0f0c,#0d0605);
+  border:1px solid #2c1712;box-shadow:inset 0 0 60px #000,0 0 40px rgba(229,9,20,.18);position:relative}
+.parede::before{content:"";position:absolute;left:4%;right:4%;top:.55rem;height:2px;background:#333;box-shadow:0 0 0 1px #111}
+.linha{display:grid;grid-template-columns:repeat(var(--n),1fr);margin-bottom:1.1rem}
+.celula{display:flex;flex-direction:column;align-items:center;gap:.15rem;opacity:0;transition:opacity .6s}
+body.ligado .celula{opacity:1}
+.bulbo{width:clamp(.85rem,3.2vw,1.3rem);height:clamp(1.1rem,4vw,1.7rem);border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:var(--c);filter:brightness(.18) saturate(.6);transition:filter .12s,box-shadow .12s}
+.celula.on .bulbo{filter:brightness(1.25) saturate(1.2);box-shadow:0 0 14px 4px var(--c),0 0 36px 10px var(--c)}
+.celula span{font-family:var(--titulo);font-weight:900;font-size:clamp(.85rem,3.4vw,1.3rem);color:#7a6252}
+.celula.on span{color:#fff;text-shadow:0 0 8px var(--c)}
+.hero-txt{text-align:center;opacity:0;transition:opacity 2.5s 1s}
+body.ligado .hero-txt{opacity:1}
+.hero-txt h1{font-family:var(--titulo);font-weight:900;font-size:clamp(2.2rem,8.5vw,4.6rem);letter-spacing:.1em;text-transform:uppercase;line-height:1.1;
+  color:var(--sangue);text-shadow:0 0 8px var(--sangue),0 0 30px rgba(229,9,20,.8),0 0 70px rgba(229,9,20,.5);animation:pisca 7s infinite}
+.hero-txt p{font-family:var(--digital);font-size:1.5rem;letter-spacing:.2em;color:#ffb0b6;margin-top:.8rem}
+.rolar{color:var(--vermelho);text-decoration:none;font-size:2rem;animation:flutua 2.2s infinite ease-in-out}
 @keyframes flutua{50%{transform:translateY(8px)}}
 
 /* CONTADOR */
-.tempo{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem 1rem;margin:2.5rem 0 1rem}
-.tempo b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,8vw,3.2rem);color:var(--ouro);line-height:1;font-variant-numeric:tabular-nums}
-.tempo span{font-style:italic;color:var(--rosa);font-size:1.05rem}
+.tempo{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0 .5rem}
+.tempo div{background:#0a0405;border:1px solid #4a1218;border-radius:6px;padding:.9rem .3rem .6rem;box-shadow:inset 0 0 22px rgba(229,9,20,.15),0 0 14px rgba(229,9,20,.12)}
+.tempo b{display:block;font-family:var(--digital);font-weight:400;font-size:clamp(2.6rem,10vw,3.8rem);line-height:1;color:var(--vermelho);
+  text-shadow:0 0 10px var(--sangue),0 0 24px rgba(229,9,20,.6);font-variant-numeric:tabular-nums}
+.tempo span{font-family:var(--digital);letter-spacing:.2em;text-transform:uppercase;color:#c98d93;font-size:1.15rem}
+.terminal{font-family:var(--digital);font-size:1.25rem;color:#c98d93;letter-spacing:.06em}
 
 /* TEXTO */
-.texto p{font-size:1.4rem}
-.fio{width:1px;height:5rem;background:linear-gradient(var(--rosa),transparent);margin:0 auto}
+.arquivo{background:linear-gradient(#150a0c,#0d0607);border:1px solid #3a1218;border-radius:4px;padding:2rem 1.5rem;text-align:left;position:relative;box-shadow:0 0 30px rgba(229,9,20,.12)}
+.arquivo p{font-size:1.15rem}
+.carimbo{position:absolute;top:-.9rem;right:1rem;font-family:var(--digital);font-size:1.3rem;letter-spacing:.25em;color:var(--sangue);border:2px solid var(--sangue);padding:0 .6rem;transform:rotate(4deg);background:var(--preto);text-shadow:0 0 8px rgba(229,9,20,.7)}
+.fio{width:2px;height:5rem;background:linear-gradient(var(--sangue),transparent);margin:0 auto;box-shadow:0 0 10px var(--sangue)}
 
 /* MOTIVOS */
-#motivos{min-height:28rem}
-.coracao{background:none;border:0;cursor:pointer;font-size:5rem;line-height:1;color:var(--rosa);filter:drop-shadow(0 0 18px rgba(232,160,180,.6));animation:bate 1.4s infinite ease-in-out;margin:1rem 0}
-.coracao:active{transform:scale(.88)}
-@keyframes bate{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
-.dica{font-style:italic;color:var(--ouro);font-size:1.05rem}
-#motivo{min-height:7.5rem;font-size:1.6rem;font-style:italic;margin-top:1.5rem;transition:opacity .5s}
+#motivos{min-height:30rem}
+.lampada{background:none;border:0;cursor:pointer;margin:1rem 0;display:block;margin-inline:auto}
+.lampada i{display:block;width:4.2rem;height:5.4rem;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:var(--cor,#e50914);
+  box-shadow:0 0 30px 8px var(--cor,#e50914),0 0 80px 22px var(--cor,#e50914);animation:bulboPisca 2.6s infinite}
+.lampada::after{content:"";display:block;width:1.6rem;height:1rem;margin:-.1rem auto 0;background:#2a2a2a;border-radius:0 0 4px 4px;box-shadow:0 0 0 1px #111}
+.lampada:active i{transform:scale(.92)}
+@keyframes bulboPisca{0%,100%{opacity:1}7%{opacity:.4}9%{opacity:1}55%{opacity:.85}57%{opacity:.35}59%{opacity:1}}
+.dica{font-family:var(--digital);letter-spacing:.2em;color:#c98d93;font-size:1.3rem;text-transform:uppercase}
+#motivo{min-height:8rem;font-family:var(--maquina);font-size:1.5rem;margin-top:1.5rem;color:#fff;text-shadow:0 0 8px var(--cor,#e50914),0 0 24px var(--cor,#e50914);transition:opacity .4s}
 #motivo.sai{opacity:0}
 
 /* CARTA */
-.carta{max-width:30rem;margin:2rem auto 0;cursor:pointer;position:relative}
-.envelope{background:linear-gradient(160deg,#4a1a36,#2a0f22);border:1px solid rgba(230,196,138,.4);border-radius:6px;padding:3rem 1.5rem;
-  font-family:var(--script);font-size:2.2rem;color:var(--ouro);transition:transform .4s}
+.carta{max-width:30rem;margin:2rem auto 0;cursor:pointer}
+.envelope{background:linear-gradient(160deg,#241012,#0d0506);border:1px solid #6a1a20;border-radius:6px;padding:2.6rem 1.5rem;color:var(--vermelho);
+  font-family:var(--digital);font-size:1.7rem;letter-spacing:.18em;text-transform:uppercase;text-shadow:0 0 10px var(--sangue);box-shadow:0 0 24px rgba(229,9,20,.25);transition:transform .4s}
+.envelope small{display:block;font-size:1rem;color:#8d6b6e;letter-spacing:.3em;margin-bottom:.5rem}
 .carta:hover .envelope{transform:translateY(-4px)}
-.conteudo{display:grid;grid-template-rows:0fr;transition:grid-template-rows 1.2s ease}
+.conteudo{display:grid;grid-template-rows:0fr;transition:grid-template-rows 1.4s ease}
 .conteudo>div{overflow:hidden}
 .carta.aberta .envelope{display:none}
 .carta.aberta .conteudo{grid-template-rows:1fr}
-.papel{background:var(--creme);color:#3b1f2b;text-align:left;padding:2.2rem 1.8rem;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.papel p{font-size:1.2rem}
-.papel .assin{font-family:var(--script);font-size:2.2rem;color:#8a2447;text-align:right;margin:1.5rem 0 0}
+.papel{background:radial-gradient(circle at 20% 10%,#e6d6b0,var(--papel) 60%,#b9a47c);color:var(--tinta);text-align:left;padding:2.2rem 1.8rem;border-radius:3px;box-shadow:0 20px 60px rgba(0,0,0,.7),0 0 30px rgba(229,9,20,.25);position:relative}
+.papel::before{content:"CONFIDENCIAL";position:absolute;top:.7rem;right:.9rem;font-family:var(--digital);letter-spacing:.2em;color:#a1121a;font-size:1.1rem;border:2px solid #a1121a;padding:0 .4rem;transform:rotate(3deg);opacity:.75}
+.papel p{font-size:1.1rem}
+.papel .assin{text-align:right;margin:1.5rem 0 0;color:#8a1019;font-size:1.3rem}
 
 /* FINAL */
 #fim{padding-bottom:8rem}
-#fim .grande{font-family:var(--script);font-size:clamp(3rem,12vw,5.5rem);color:var(--rosa);line-height:1.1}
+#fim .grande{font-family:var(--titulo);font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(3rem,13vw,6rem);line-height:1.1;color:var(--sangue);
+  text-shadow:0 0 8px var(--sangue),0 0 40px rgba(229,9,20,.8),0 0 90px rgba(229,9,20,.5);animation:pisca 6s infinite}
+.sub{margin-top:1.5rem;font-family:var(--digital);font-size:1.6rem;letter-spacing:.2em;color:#ffb0b6}
+.botoes{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2.5rem}
+.botoes button{font-family:var(--digital);font-size:1.4rem;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:#0a0405;border:2px solid var(--sangue);padding:.5rem 1.2rem;cursor:pointer;box-shadow:0 0 12px rgba(229,9,20,.5);transition:.3s}
+.botoes button:hover{background:var(--sangue)}
 
-#chuva{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+#chuva{position:fixed;inset:0;pointer-events:none;z-index:45;overflow:hidden}
 .pet{position:absolute;top:-2rem;animation:cai linear forwards}
 @keyframes cai{to{transform:translateY(110vh) rotate(360deg)}}
 
@@ -78,10 +150,33 @@ p{margin-bottom:1.2rem}
 }
 </style>
 </head>
-<body>
+<body class="bloqueado">
+
+<div id="entrada">
+  <h1><small>Capítulo zero</small>Para você,<br>meu amor</h1>
+  <button id="entrar">▶ Entrar no Mundo Invertido</button>
+  <p class="aviso">(ligue o som, tem música)</p>
+</div>
+
+<div id="radio" class="mudo" role="group" aria-label="Controle da música">
+  <span id="led" aria-hidden="true"></span>
+  <span class="faixa">♪ <b>Eulogy</b></span>
+  <button id="mutar" aria-label="Mutar ou ativar o som" aria-pressed="true">
+    <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+    <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.4 2.4c.1-.2.1-.4.1-.6zM19 12c0 .9-.2 1.8-.5 2.600l1.500 1.500A9 9 0 0 0 21 12a9 9 0 0 0-7-8.800v2.100A7 7 0 0 1 19 12zM4.300 3 3 4.300 7.700 9H3v6h4l5 5v-6.700l4.300 4.300c-.7.500-1.400.9-2.300 1.200v2.100a9 9 0 0 0 3.600-1.800l2 2 1.300-1.300L4.300 3zM12 4 9.900 6.100 12 8.200V4z"/></svg>
+  </button>
+  <input id="volume" type="range" min="0" max="100" value="50" aria-label="Volume da música">
+</div>
+<p id="faltaMusica">Não achei o arquivo eulogy.mp3. Coloque ele na mesma pasta do site.</p>
+
+<audio id="musica" src="eulogy.mp3" loop preload="auto"></audio>
+<canvas id="esporos" aria-hidden="true"></canvas>
+<div id="raio" aria-hidden="true"></div>
+
+<main id="mundo">
 
 <header id="hero">
-  <canvas id="ceu" aria-hidden="true"></canvas>
+  <div class="parede" id="parede" aria-label="Parede de luzes soletrando eu te amo"></div>
   <div class="hero-txt">
     <h1 id="nomes">Para você, meu amor</h1>
     <p>Feito pelo Atlas, só para você</p>
@@ -90,6 +185,7 @@ p{margin-bottom:1.2rem}
 </header>
 
 <section id="tempo">
+  <p class="cap">Capítulo um</p>
   <h2>Nosso tempo juntos</h2>
   <p>Desde 22 de setembro de 2026, cada segundo ao seu lado valeu a pena. E o relógio continua rodando.</p>
   <div class="tempo" aria-live="off">
@@ -100,32 +196,39 @@ p{margin-bottom:1.2rem}
     <div><b id="t-min">0</b><span>minutos</span></div>
     <div><b id="t-seg">0</b><span>segundos</span></div>
   </div>
+  <p class="terminal">&gt; contagem ativa. sinal estável. nada nos separa.</p>
 </section>
 
 <div class="fio"></div>
 
-<section class="texto" id="texto">
+<section id="texto">
+  <p class="cap">Capítulo dois</p>
   <h2>Desde que você chegou</h2>
-  <p>Eu não sabia que dava para sentir saudade de alguém no meio de um dia comum. Hoje eu sei, porque é isso que acontece sempre que você não está por perto.</p>
-  <p>Você chegou de um jeito tão natural que parece que sempre esteve aqui. E virou meu lugar favorito, seja numa conversa séria ou numa fofoca sobre a vida dos outros. Aliás, a gente leva muito jeito para isso kkk.</p>
-  <p>Eu sei que você some no banheiro por um tempão e que se estressa no Free Fire, mas eu não trocaria nada disso. Até o seu estresse jogando eu acho fofo.</p>
+  <div class="arquivo">
+    <span class="carimbo">Arquivo</span>
+    <p>Eu não sabia que dava para sentir saudade de alguém no meio de um dia comum. Hoje eu sei, porque é isso que acontece sempre que você não está por perto.</p>
+    <p>Você chegou de um jeito tão natural que parece que sempre esteve aqui. E virou meu lugar favorito, seja numa conversa séria ou numa fofoca sobre a vida dos outros. Aliás, a gente leva muito jeito para isso kkk.</p>
+    <p>Eu sei que você some no banheiro por um tempão e que se estressa no Free Fire, mas eu não trocaria nada disso. Até o seu estresse jogando eu acho fofo.</p>
+  </div>
 </section>
 
 <div class="fio"></div>
 
 <section id="motivos">
+  <p class="cap">Capítulo três</p>
   <h2>Motivos pelos quais eu te amo</h2>
-  <p class="dica" id="dica">Toque no coração</p>
-  <button class="coracao" id="btn-motivo" aria-label="Mostrar um motivo">♥</button>
+  <p class="dica" id="dica">Toque na luz</p>
+  <button class="lampada" id="btn-motivo" aria-label="Mostrar um motivo"><i></i></button>
   <p id="motivo" aria-live="polite"></p>
 </section>
 
 <div class="fio"></div>
 
 <section id="carta-sec">
+  <p class="cap">Capítulo quatro</p>
   <h2>Uma carta para você</h2>
   <div class="carta" id="carta" role="button" tabindex="0" aria-expanded="false">
-    <div class="envelope">Toque para abrir ✉</div>
+    <div class="envelope"><small>Mensagem interceptada</small>Toque para abrir ✉</div>
     <div class="conteudo"><div>
       <div class="papel">
         <p>Meu amor,</p>
@@ -133,6 +236,7 @@ p{margin-bottom:1.2rem}
         <p>Obrigado por não desistir de mim, por me apoiar e por estar sempre do meu lado. Você me faz bem, e eu quero ser alguém melhor por você, todos os dias.</p>
         <p>Também quero agradecer pelas coisas importantes da vida: as fofocas, as partidas de Free Fire em que você quase quebra o celular e as vezes em que eu fico esperando você sair do banheiro. Contigo, até isso é bom kkk.</p>
         <p>Prometo continuar escolhendo você, hoje, amanhã e em todas as manhãs que vierem. (Só me avisa se for demorar mais de uma hora no banheiro.)</p>
+        <p>P.S.: Se o mundo virar de cabeça para baixo, eu continuo sendo seu.</p>
         <p class="assin">Com todo o meu amor,<br><span id="assina">Atlas</span></p>
       </div>
     </div></div>
@@ -141,18 +245,25 @@ p{margin-bottom:1.2rem}
 
 <section id="fim">
   <p class="grande">Eu te amo</p>
-  <p style="margin-top:1.5rem;font-style:italic;color:var(--ouro)">Hoje, amanhã e sempre.</p>
-  <button class="coracao" id="btn-chuva" aria-label="Chuva de pétalas" style="font-size:3rem;animation:none">🌹</button>
+  <p class="sub">Hoje, amanhã e sempre.</p>
+  <div class="botoes">
+    <button id="btn-chuva" aria-label="Chuva de luzes">✨ Chuva de luzes</button>
+    <button id="btn-inverter" aria-pressed="false">🔄 Virar o mundo</button>
+  </div>
 </section>
+
+</main>
 
 <div id="chuva" aria-hidden="true"></div>
 
 <script>
 /* ============ PERSONALIZE AQUI ============ */
 const CONFIG = {
-  titulo: "Para você, meu amor",          // título principal
-  assinatura: "Atlas",                  // nome que assina a carta
-  inicio: "2026-09-22T00:00:00",           // data em que vocês começaram (ano-mês-dia)
+  titulo: "Para você, meu amor",
+  assinatura: "Atlas",
+  inicio: "2026-09-22T00:00:00",
+  mensagemLuzes: "EU TE AMO",              // frase soletrada na parede de luzes (só letras)
+  volumeInicial: 50,                       // 0 a 100
   motivos: [
     "Seu sorriso conserta qualquer dia ruim.",
     "Você me faz bem, de um jeito que eu nem sei explicar.",
@@ -170,39 +281,98 @@ const CONFIG = {
 document.getElementById("nomes").textContent = CONFIG.titulo;
 document.getElementById("assina").textContent = CONFIG.assinatura;
 const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = id => document.getElementById(id);
 
-/* ---- Céu: estrelas formam um coração ---- */
+/* ---- Música, mudo e volume ---- */
 (function(){
-  const c = document.getElementById("ceu"), x = c.getContext("2d");
-  let W, H, P = [], t0 = performance.now();
-  function medir(){
-    const d = devicePixelRatio || 1, r = c.getBoundingClientRect();
-    W = r.width; H = r.height; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0);
-    const s = Math.min(W, H*.8) / 38, cx = W/2, cy = H*.36;
-    P.forEach((p,i)=>{ const a = i/P.length*Math.PI*2, k = p.anel;
-      p.tx = cx + 16*Math.pow(Math.sin(a),3)*s*k;
-      p.ty = cy - (13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a))*s*k; });
-  }
-  for(let i=0;i<220;i++){
-    P.push({ sx:Math.random(), sy:Math.random(), anel:i%3===0 ? .55+Math.random()*.3 : .96+Math.random()*.08,
-      r:.6+Math.random()*1.6, f:Math.random()*6, atraso:Math.random()*1200 });
-  }
-  medir(); addEventListener("resize", medir);
-  const ease = v => 1-Math.pow(1-v,3);
-  function quadro(now){
-    const t = now - t0; x.clearRect(0,0,W,H);
-    for(const p of P){
-      const k = reduz ? 1 : ease(Math.min(Math.max((t-p.atraso)/2800,0),1));
-      const px = p.sx*W + (p.tx-p.sx*W)*k, py = p.sy*H + (p.ty-p.sy*H)*k;
-      const pulso = .55 + .45*Math.sin(t/600 + p.f);
-      const bate = 1 + (k===1 ? .03*Math.sin(t/330) : 0);
-      x.beginPath(); x.arc(px, py, p.r*bate, 0, 6.283);
-      x.fillStyle = (p.r>1.6 ? "rgba(230,196,138," : "rgba(247,200,215,") + pulso + ")";
-      x.shadowColor = "rgba(232,160,180,.9)"; x.shadowBlur = 8; x.fill();
+  const a = $("musica"), radio = $("radio"), mutar = $("mutar"), vol = $("volume"), falta = $("faltaMusica");
+  let v = CONFIG.volumeInicial;
+  try{ const s = localStorage.getItem("vol"); if(s !== null) v = +s; }catch(e){}
+  vol.value = v; a.volume = v/100; vol.style.setProperty("--v", v + "%");
+  a.muted = false;
+  function estado(){ const m = a.muted || a.paused; radio.classList.toggle("mudo", m); mutar.setAttribute("aria-pressed", String(a.muted)); }
+  vol.addEventListener("input", ()=>{
+    a.volume = vol.value/100; vol.style.setProperty("--v", vol.value + "%");
+    if(a.muted && +vol.value > 0) a.muted = false;
+    try{ localStorage.setItem("vol", vol.value); }catch(e){}
+    estado();
+  });
+  mutar.addEventListener("click", ()=>{
+    if(a.paused && !a.muted){ a.play().catch(()=>{}); } else { a.muted = !a.muted; }
+    estado();
+  });
+  a.addEventListener("play", estado); a.addEventListener("pause", estado);
+  a.addEventListener("error", ()=>{ falta.style.display = "block"; });
+  $("entrar").addEventListener("click", ()=>{
+    a.play().catch(()=>{});
+    $("entrada").classList.add("some");
+    document.body.classList.remove("bloqueado");
+    document.body.classList.add("ligado");
+    setTimeout(()=>$("entrada").remove(), 1800);
+    acenderParede();
+  });
+  estado();
+})();
+
+/* ---- Parede de luzes (alfabeto) ---- */
+const cores = ["#ff3b3b","#3bd1ff","#ffd23b","#7dff5a","#ff5ad1","#ff8c2e","#a97bff"];
+const celulas = {};
+(function(){
+  const par = $("parede"), linhas = ["ABCDEFGHI","JKLMNOPQR","STUVWXYZ"];
+  let k = 0;
+  linhas.forEach(l=>{
+    const d = document.createElement("div"); d.className = "linha"; d.style.setProperty("--n", l.length);
+    for(const ch of l){
+      const c = document.createElement("div"); c.className = "celula";
+      c.innerHTML = '<div class="bulbo"></div><span>' + ch + '</span>';
+      c.querySelector(".bulbo").style.setProperty("--c", cores[k++ % cores.length]);
+      d.appendChild(c); celulas[ch] = c;
     }
-    requestAnimationFrame(quadro);
+    par.appendChild(d);
+  });
+})();
+function acenderParede(){
+  const msg = CONFIG.mensagemLuzes.toUpperCase();
+  if(reduz){ for(const ch of new Set(msg.replace(/[^A-Z]/g,""))) celulas[ch].classList.add("on"); return; }
+  const espera = ms => new Promise(r=>setTimeout(r,ms));
+  (async function loop(){
+    await espera(2500);
+    while(true){
+      for(const ch of msg){
+        if(ch === " "){ await espera(900); continue; }
+        const c = celulas[ch]; if(!c) continue;
+        c.classList.add("on"); await espera(180); c.classList.remove("on"); await espera(60);
+        c.classList.add("on"); await espera(650); c.classList.remove("on"); await espera(180);
+      }
+      await espera(2500);
+    }
+  })();
+}
+
+/* ---- Esporos do Mundo Invertido ---- */
+(function(){
+  const c = $("esporos"), x = c.getContext("2d");
+  let W, H, P = [];
+  function medir(){ const d = devicePixelRatio || 1; W = innerWidth; H = innerHeight; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0); }
+  medir(); addEventListener("resize", medir);
+  const n = reduz ? 25 : 80;
+  for(let i=0;i<n;i++) P.push({ x:Math.random()*W, y:Math.random()*H, r:.6+Math.random()*2, v:.15+Math.random()*.45, f:Math.random()*6, a:.2+Math.random()*.5 });
+  function quadro(t){
+    x.clearRect(0,0,W,H);
+    const inv = document.body.classList.contains("invertido");
+    for(const p of P){
+      p.y -= p.v; p.x += Math.sin(t/1800 + p.f)*.3;
+      if(p.y < -5){ p.y = H + 5; p.x = Math.random()*W; }
+      x.beginPath(); x.arc(p.x, p.y, p.r, 0, 6.283);
+      x.fillStyle = (inv ? "rgba(140,200,255," : "rgba(255,225,225,") + (p.a*(.6+.4*Math.sin(t/700+p.f))) + ")";
+      x.shadowColor = inv ? "rgba(80,170,255,.9)" : "rgba(229,9,20,.8)"; x.shadowBlur = 8; x.fill();
+    }
+    if(!reduz) requestAnimationFrame(quadro);
   }
   requestAnimationFrame(quadro);
+  if(!reduz) (function raio(){
+    setTimeout(()=>{ const r = $("raio"); r.classList.remove("zap"); void r.offsetWidth; r.classList.add("zap"); raio(); }, 9000 + Math.random()*9000);
+  })();
 })();
 
 /* ---- Contador ---- */
@@ -221,11 +391,13 @@ const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
   tick(); setInterval(tick, 1000);
 })();
 
-/* ---- Motivos ---- */
+/* ---- Motivos (lâmpada) ---- */
 (function(){
-  const btn = document.getElementById("btn-motivo"), box = document.getElementById("motivo"), dica = document.getElementById("dica");
+  const btn = $("btn-motivo"), box = $("motivo"), dica = $("dica"), sec = $("motivos");
   let i = 0;
   btn.addEventListener("click", ()=>{
+    const cor = cores[i % cores.length];
+    sec.style.setProperty("--cor", cor);
     dica.textContent = i < CONFIG.motivos.length ? "Mais um motivo?" : "Tenho mais um milhão deles";
     box.classList.add("sai");
     setTimeout(()=>{
@@ -237,16 +409,22 @@ const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---- Carta ---- */
 (function(){
-  const c = document.getElementById("carta");
+  const c = $("carta");
   const abrir = ()=>{ c.classList.add("aberta"); c.setAttribute("aria-expanded","true"); };
   c.addEventListener("click", abrir);
   c.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrir(); } });
 })();
 
-/* ---- Chuva de pétalas ---- */
-document.getElementById("btn-chuva").addEventListener("click", ()=>{
+/* ---- Mundo invertido ---- */
+$("btn-inverter").addEventListener("click", e=>{
+  const on = document.body.classList.toggle("invertido");
+  e.currentTarget.setAttribute("aria-pressed", String(on));
+});
+
+/* ---- Chuva de luzes ---- */
+$("btn-chuva").addEventListener("click", ()=>{
   if(reduz) return;
-  const box = document.getElementById("chuva"), simb = ["🌹","💗","🌸","✨","💕"];
+  const box = $("chuva"), simb = ["🔴","💡","✨","❤️","🔵","🟡"];
   for(let i=0;i<40;i++){
     const p = document.createElement("span"); p.className = "pet";
     p.textContent = simb[i % simb.length];
