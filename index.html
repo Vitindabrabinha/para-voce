@@ -24,13 +24,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:49;
   background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.85) 100%)}
 section{position:relative;padding:6rem 1.5rem;max-width:44rem;margin:0 auto;text-align:center}
-.cap{font-family:var(--digital);letter-spacing:.35em;color:var(--vermelho);font-size:1.3rem;text-transform:uppercase;opacity:.9}
+.cap{font-family:var(--digital);letter-spacing:.3em;color:var(--vermelho);font-size:1.3rem;text-transform:uppercase;opacity:.9;line-height:1.2}
 h2{font-family:var(--titulo);font-weight:900;font-size:clamp(1.9rem,6vw,3rem);letter-spacing:.06em;text-transform:uppercase;
-  color:var(--sangue);text-shadow:0 0 6px var(--sangue),0 0 22px rgba(229,9,20,.7),0 0 50px rgba(229,9,20,.4);line-height:1.15;margin:.4rem 0 1.8rem}
+  color:var(--sangue);text-shadow:0 0 6px var(--sangue),0 0 22px rgba(229,9,20,.7),0 0 50px rgba(229,9,20,.4);line-height:1.15;margin:.6rem 0 1.8rem}
 p{margin-bottom:1.2rem}
 :focus-visible{outline:2px solid var(--azul);outline-offset:4px}
 #mundo{transition:filter 1.2s}
 body.invertido #mundo{filter:hue-rotate(195deg) saturate(.9) brightness(.95)}
+button{font-family:inherit}
 
 #esporos{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
 #raio{position:fixed;inset:0;pointer-events:none;z-index:4;background:radial-gradient(circle at 50% 0,rgba(255,60,60,.55),rgba(255,255,255,.12) 50%,transparent 75%);opacity:0}
@@ -38,23 +39,29 @@ body.invertido #mundo{filter:hue-rotate(195deg) saturate(.9) brightness(.95)}
 @keyframes zap{0%{opacity:0}6%{opacity:1}12%{opacity:.1}20%{opacity:.8}40%{opacity:0}100%{opacity:0}}
 
 /* ENTRADA */
-#entrada{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:1.5rem;text-align:center;transition:opacity 1.6s}
+#entrada{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;padding:1.5rem;text-align:center;transition:opacity 1.6s}
 #entrada.some{opacity:0;pointer-events:none}
 #entrada h1{font-family:var(--titulo);font-weight:900;font-size:clamp(2.2rem,9vw,5rem);letter-spacing:.12em;text-transform:uppercase;line-height:1.1;
   color:var(--sangue);text-shadow:0 0 8px var(--sangue),0 0 40px rgba(229,9,20,.8);animation:pisca 5s infinite}
 #entrada h1 small{display:block;font-family:var(--digital);font-weight:400;font-size:.32em;letter-spacing:.5em;color:#ffb0b6;margin-bottom:.6rem;text-shadow:none}
-#entrar{font-family:var(--digital);font-size:1.7rem;letter-spacing:.25em;text-transform:uppercase;color:#fff;background:transparent;
-  border:2px solid var(--sangue);padding:.6rem 1.6rem;cursor:pointer;box-shadow:0 0 14px rgba(229,9,20,.6),inset 0 0 14px rgba(229,9,20,.35);transition:.3s}
+#boot{font-family:var(--digital);font-size:1.25rem;line-height:1.35;color:#c98d93;text-align:left;min-height:7.6rem;width:min(30rem,92vw);white-space:pre-wrap;letter-spacing:.04em}
+#boot::after{content:"█";animation:led 1s steps(1) infinite}
+#entrar{font-family:var(--digital);font-size:1.7rem;letter-spacing:.25em;text-transform:uppercase;color:#fff;background:transparent;opacity:0;pointer-events:none;
+  border:2px solid var(--sangue);padding:.6rem 1.6rem;cursor:pointer;box-shadow:0 0 14px rgba(229,9,20,.6),inset 0 0 14px rgba(229,9,20,.35);transition:opacity 1s,background .3s,box-shadow .3s}
+#entrar.vis{opacity:1;pointer-events:auto}
 #entrar:hover{background:var(--sangue);box-shadow:0 0 30px var(--sangue)}
-#entrada .aviso{font-family:var(--digital);color:#8d6b6e;font-size:1.1rem;letter-spacing:.15em}
+#entrada .aviso{font-family:var(--digital);color:#8d6b6e;font-size:1.1rem;letter-spacing:.15em;margin:0}
 @keyframes pisca{0%,18%,22%,62%,64%,100%{opacity:1}20%,63%{opacity:.35}21%{opacity:.8}}
 
-/* PLAYER (rádio) */
-#radio{position:fixed;top:.8rem;right:.8rem;z-index:60;display:flex;align-items:center;gap:.7rem;padding:.5rem .8rem;
+/* PLAYER (walkman) */
+#radio{position:fixed;top:.8rem;right:.8rem;z-index:60;display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;
   background:linear-gradient(#1b0d0f,#0b0405);border:1px solid #5a1a20;border-radius:8px;box-shadow:0 0 16px rgba(229,9,20,.35)}
-#led{width:.6rem;height:.6rem;border-radius:50%;background:var(--sangue);box-shadow:0 0 10px var(--sangue);animation:led 1.6s infinite}
-#radio.mudo #led{animation:none;background:#3a1014;box-shadow:none}
-@keyframes led{50%{opacity:.35}}
+.fita{display:flex;gap:.3rem;align-items:center;padding:.2rem .4rem;background:#2a1113;border:1px solid #5a1a20;border-radius:4px}
+.reel{position:relative;width:1.15rem;height:1.15rem;border-radius:50%;border:2px solid #c98d93;
+  background:conic-gradient(#c98d93 0 12%,transparent 12% 33%,#c98d93 33% 45%,transparent 45% 66%,#c98d93 66% 78%,transparent 78%)}
+.reel::after{content:"";position:absolute;inset:25%;border-radius:50%;background:#1b0d0f}
+#radio:not(.mudo) .reel{animation:gira 1.4s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
 #radio .faixa{font-family:var(--digital);font-size:1.15rem;letter-spacing:.12em;color:#ffb0b6;white-space:nowrap}
 #radio .faixa b{font-weight:400;color:var(--vermelho)}
 #mutar{background:none;border:1px solid #5a1a20;border-radius:6px;color:var(--vermelho);width:2.2rem;height:2.2rem;cursor:pointer;display:grid;place-items:center;transition:.2s}
@@ -62,31 +69,41 @@ body.invertido #mundo{filter:hue-rotate(195deg) saturate(.9) brightness(.95)}
 #mutar svg{width:1.3rem;height:1.3rem;fill:currentColor}
 #radio.mudo #mutar .on{display:none}
 #radio:not(.mudo) #mutar .off{display:none}
-#volume{-webkit-appearance:none;appearance:none;width:6.5rem;height:.35rem;border-radius:4px;background:linear-gradient(90deg,var(--sangue) var(--v,50%),#3a1a1d var(--v,50%));outline-offset:6px;cursor:pointer}
+#volume{-webkit-appearance:none;appearance:none;width:6rem;height:.35rem;border-radius:4px;background:linear-gradient(90deg,var(--sangue) var(--v,50%),#3a1a1d var(--v,50%));outline-offset:6px;cursor:pointer}
 #volume::-webkit-slider-thumb{-webkit-appearance:none;width:1rem;height:1rem;border-radius:50%;background:#ffd0d4;border:2px solid var(--sangue);box-shadow:0 0 10px var(--sangue)}
 #volume::-moz-range-thumb{width:.8rem;height:.8rem;border-radius:50%;background:#ffd0d4;border:2px solid var(--sangue);box-shadow:0 0 10px var(--sangue)}
-#faltaMusica{display:none;position:fixed;top:4.4rem;right:.8rem;z-index:60;max-width:15rem;font-family:var(--digital);font-size:1.1rem;line-height:1.2;color:#ffb0b6;background:#1b0d0f;border:1px solid #5a1a20;padding:.5rem .7rem;border-radius:6px}
-@media(max-width:560px){#radio .faixa{display:none}#volume{width:5rem}}
+#faltaMusica{display:none;position:fixed;top:4.4rem;right:.8rem;z-index:60;max-width:15rem;font-family:var(--digital);font-size:1.1rem;line-height:1.2;color:#ffb0b6;background:#1b0d0f;border:1px solid #5a1a20;padding:.5rem .7rem;border-radius:6px;margin:0}
+@media(max-width:560px){#radio .faixa{display:none}#volume{width:4.5rem}}
 
-/* HERO: parede de luzes */
+/* VHS + TOAST */
+#vhs{position:fixed;left:.8rem;bottom:.7rem;z-index:48;font-family:var(--digital);font-size:1.15rem;letter-spacing:.1em;color:#ffdede;text-shadow:0 0 6px rgba(255,255,255,.4);pointer-events:none;line-height:1.1}
+#vhs b{font-weight:400;color:#fff}
+#vhs i{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--sangue);margin-right:.4rem;animation:led 1.2s steps(1) infinite}
+#toast{position:fixed;left:50%;bottom:3.2rem;translate:-50% 0;z-index:70;max-width:90vw;text-align:center;font-family:var(--digital);font-size:1.4rem;letter-spacing:.1em;color:#fff;
+  background:#12060a;border:1px solid var(--sangue);padding:.5rem 1rem;box-shadow:0 0 22px rgba(229,9,20,.6);opacity:0;pointer-events:none;transition:opacity .5s;margin:0}
+#toast.v{opacity:1}
+
+/* PAREDE DE LUZES */
 #hero{min-height:100svh;padding:4.5rem 1rem 3rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;max-width:none;
   background:radial-gradient(ellipse at 50% 30%,#2a070b,var(--preto) 70%)}
-.parede{width:min(34rem,94vw);padding:1.4rem .8rem 1rem;border-radius:6px;
+.parede{width:min(34rem,94vw);padding:1.4rem .8rem 1rem;border-radius:6px;transition:transform 1.4s;
   background:repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0 6px,transparent 6px 14px),linear-gradient(#1a0f0c,#0d0605);
   border:1px solid #2c1712;box-shadow:inset 0 0 60px #000,0 0 40px rgba(229,9,20,.18);position:relative}
+body.invertido #parede{transform:rotate(180deg)}
 .parede::before{content:"";position:absolute;left:4%;right:4%;top:.55rem;height:2px;background:#333;box-shadow:0 0 0 1px #111}
 .linha{display:grid;grid-template-columns:repeat(var(--n),1fr);margin-bottom:1.1rem}
-.celula{display:flex;flex-direction:column;align-items:center;gap:.15rem;opacity:0;transition:opacity .6s}
+.celula{display:flex;flex-direction:column;align-items:center;gap:.15rem;opacity:0;transition:opacity .6s;background:none;border:0;color:inherit}
 body.ligado .celula{opacity:1}
+.sinal .celula{opacity:1;cursor:pointer}
 .bulbo{width:clamp(.85rem,3.2vw,1.3rem);height:clamp(1.1rem,4vw,1.7rem);border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:var(--c);filter:brightness(.18) saturate(.6);transition:filter .12s,box-shadow .12s}
 .celula.on .bulbo{filter:brightness(1.25) saturate(1.2);box-shadow:0 0 14px 4px var(--c),0 0 36px 10px var(--c)}
 .celula span{font-family:var(--titulo);font-weight:900;font-size:clamp(.85rem,3.4vw,1.3rem);color:#7a6252}
 .celula.on span{color:#fff;text-shadow:0 0 8px var(--c)}
 .hero-txt{text-align:center;opacity:0;transition:opacity 2.5s 1s}
 body.ligado .hero-txt{opacity:1}
-.hero-txt h1{font-family:var(--titulo);font-weight:900;font-size:clamp(2.2rem,8.5vw,4.6rem);letter-spacing:.1em;text-transform:uppercase;line-height:1.1;
+.hero-txt h1{font-family:var(--titulo);font-weight:900;font-size:clamp(2.2rem,8.5vw,4.6rem);letter-spacing:.1em;text-transform:uppercase;line-height:1.1;margin-top:.4rem;
   color:var(--sangue);text-shadow:0 0 8px var(--sangue),0 0 30px rgba(229,9,20,.8),0 0 70px rgba(229,9,20,.5);animation:pisca 7s infinite}
-.hero-txt p{font-family:var(--digital);font-size:1.5rem;letter-spacing:.2em;color:#ffb0b6;margin-top:.8rem}
+.hero-txt p{font-family:var(--digital);font-size:1.5rem;letter-spacing:.2em;color:#ffb0b6;margin:.8rem 0 0}
 .rolar{color:var(--vermelho);text-decoration:none;font-size:2rem;animation:flutua 2.2s infinite ease-in-out}
 @keyframes flutua{50%{transform:translateY(8px)}}
 
@@ -98,23 +115,46 @@ body.ligado .hero-txt{opacity:1}
 .tempo span{font-family:var(--digital);letter-spacing:.2em;text-transform:uppercase;color:#c98d93;font-size:1.15rem}
 .terminal{font-family:var(--digital);font-size:1.25rem;color:#c98d93;letter-spacing:.06em}
 
-/* TEXTO */
-.arquivo{background:linear-gradient(#150a0c,#0d0607);border:1px solid #3a1218;border-radius:4px;padding:2rem 1.5rem;text-align:left;position:relative;box-shadow:0 0 30px rgba(229,9,20,.12)}
+/* ARQUIVO / FICHA */
+.arquivo,.ficha{background:linear-gradient(#150a0c,#0d0607);border:1px solid #3a1218;border-radius:4px;padding:2rem 1.5rem;text-align:left;position:relative;box-shadow:0 0 30px rgba(229,9,20,.12)}
 .arquivo p{font-size:1.15rem}
 .carimbo{position:absolute;top:-.9rem;right:1rem;font-family:var(--digital);font-size:1.3rem;letter-spacing:.25em;color:var(--sangue);border:2px solid var(--sangue);padding:0 .6rem;transform:rotate(4deg);background:var(--preto);text-shadow:0 0 8px rgba(229,9,20,.7)}
 .fio{width:2px;height:5rem;background:linear-gradient(var(--sangue),transparent);margin:0 auto;box-shadow:0 0 10px var(--sangue)}
+.tat{display:inline-block;font-family:var(--digital);font-size:2.1rem;letter-spacing:.3em;color:#e8b8bd;border:2px dashed #7a3a40;padding:0 .8rem;margin-bottom:.4rem;line-height:1.3}
+.classe{font-family:var(--digital);font-size:1.4rem;letter-spacing:.1em;color:var(--vermelho);margin-bottom:.4rem}
+.stat{margin:1rem 0 0}
+.stat .nome{display:flex;justify-content:space-between;gap:1rem;font-size:1rem;color:#e8c9cc;line-height:1.3}
+.stat .nome em{font-style:normal;font-family:var(--digital);color:var(--vermelho);font-size:1.3rem;line-height:1;white-space:nowrap}
+.barra{height:.55rem;background:#2a1417;border-radius:4px;overflow:hidden;margin-top:.35rem}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brasa),var(--vermelho));box-shadow:0 0 12px var(--sangue);transition:width 1.8s cubic-bezier(.2,.8,.2,1)}
+.btn{font-family:var(--digital);font-size:1.4rem;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:#0a0405;border:2px solid var(--sangue);padding:.45rem 1.2rem;cursor:pointer;box-shadow:0 0 12px rgba(229,9,20,.5);transition:.3s}
+.btn:hover{background:var(--sangue)}
+.btn:disabled{opacity:.5;cursor:wait}
+.d20{font-family:var(--digital);font-size:5rem;line-height:1;color:var(--vermelho);text-shadow:0 0 14px var(--sangue);margin:1.4rem 0 .2rem;min-height:5rem}
+.d20.rola{animation:treme .12s infinite}
+@keyframes treme{25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+#d20-res{min-height:4rem;color:#fff;font-size:1.2rem}
 
 /* MOTIVOS */
 #motivos{min-height:30rem}
-.lampada{background:none;border:0;cursor:pointer;margin:1rem 0;display:block;margin-inline:auto}
+.lampada{background:none;border:0;cursor:pointer;margin:1rem auto;display:block}
 .lampada i{display:block;width:4.2rem;height:5.4rem;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:var(--cor,#e50914);
   box-shadow:0 0 30px 8px var(--cor,#e50914),0 0 80px 22px var(--cor,#e50914);animation:bulboPisca 2.6s infinite}
 .lampada::after{content:"";display:block;width:1.6rem;height:1rem;margin:-.1rem auto 0;background:#2a2a2a;border-radius:0 0 4px 4px;box-shadow:0 0 0 1px #111}
 .lampada:active i{transform:scale(.92)}
 @keyframes bulboPisca{0%,100%{opacity:1}7%{opacity:.4}9%{opacity:1}55%{opacity:.85}57%{opacity:.35}59%{opacity:1}}
 .dica{font-family:var(--digital);letter-spacing:.2em;color:#c98d93;font-size:1.3rem;text-transform:uppercase}
-#motivo{min-height:8rem;font-family:var(--maquina);font-size:1.5rem;margin-top:1.5rem;color:#fff;text-shadow:0 0 8px var(--cor,#e50914),0 0 24px var(--cor,#e50914);transition:opacity .4s}
+#motivo{min-height:8rem;font-size:1.5rem;margin-top:1.5rem;color:#fff;text-shadow:0 0 8px var(--cor,#e50914),0 0 24px var(--cor,#e50914);transition:opacity .4s}
 #motivo.sai{opacity:0}
+
+/* SINAL */
+.sinal{margin:1.5rem auto}
+.controles{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+.controles input{font-family:var(--digital);font-size:1.4rem;letter-spacing:.15em;text-transform:uppercase;background:#0a0405;color:#fff;border:2px solid #5a1a20;padding:.4rem .8rem;width:min(18rem,100%)}
+.controles input::placeholder{color:#6e4a4e}
+.preset{margin-top:.8rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.preset .btn{font-size:1.15rem;padding:.3rem .8rem}
+#leitura{font-family:var(--digital);font-size:2rem;letter-spacing:.3em;min-height:2.6rem;color:var(--vermelho);text-shadow:0 0 10px var(--sangue);margin:1rem 0 0;white-space:pre-wrap;word-break:break-word}
 
 /* CARTA */
 .carta{max-width:30rem;margin:2rem auto 0;cursor:pointer}
@@ -131,14 +171,18 @@ body.ligado .hero-txt{opacity:1}
 .papel p{font-size:1.1rem}
 .papel .assin{text-align:right;margin:1.5rem 0 0;color:#8a1019;font-size:1.3rem}
 
-/* FINAL */
-#fim{padding-bottom:8rem}
+/* FINAL + CRÉDITOS */
+#fim{padding-bottom:4rem}
 #fim .grande{font-family:var(--titulo);font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(3rem,13vw,6rem);line-height:1.1;color:var(--sangue);
   text-shadow:0 0 8px var(--sangue),0 0 40px rgba(229,9,20,.8),0 0 90px rgba(229,9,20,.5);animation:pisca 6s infinite}
 .sub{margin-top:1.5rem;font-family:var(--digital);font-size:1.6rem;letter-spacing:.2em;color:#ffb0b6}
 .botoes{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2.5rem}
-.botoes button{font-family:var(--digital);font-size:1.4rem;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:#0a0405;border:2px solid var(--sangue);padding:.5rem 1.2rem;cursor:pointer;box-shadow:0 0 12px rgba(229,9,20,.5);transition:.3s}
-.botoes button:hover{background:var(--sangue)}
+.segredo{margin-top:2rem;font-family:var(--digital);font-size:1.15rem;letter-spacing:.1em;color:#6e4a4e}
+.cred{display:grid;grid-template-columns:1fr 1fr;gap:.7rem 1.2rem;margin-top:2rem;font-size:1.05rem;text-align:left;line-height:1.35}
+.cred b{font-weight:400;font-family:var(--digital);letter-spacing:.15em;text-transform:uppercase;color:#c98d93;text-align:right;font-size:1.2rem}
+.cred span{color:#fff}
+.prox{margin-top:3.5rem;font-family:var(--titulo);font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(1.3rem,4.5vw,2rem);color:var(--sangue);text-shadow:0 0 14px rgba(229,9,20,.8)}
+.prox small{display:block;font-family:var(--digital);font-weight:400;letter-spacing:.3em;color:#ffb0b6;font-size:1.3rem;margin-top:.5rem;text-shadow:none}
 
 #chuva{position:fixed;inset:0;pointer-events:none;z-index:45;overflow:hidden}
 .pet{position:absolute;top:-2rem;animation:cai linear forwards}
@@ -153,21 +197,25 @@ body.ligado .hero-txt{opacity:1}
 <body class="bloqueado">
 
 <div id="entrada">
-  <h1><small>Capítulo zero</small>Para você,<br>meu amor</h1>
+  <h1><small>Hawkins, Indiana</small>Para você,<br>meu amor</h1>
+  <pre id="boot" aria-hidden="true"></pre>
   <button id="entrar">▶ Entrar no Mundo Invertido</button>
   <p class="aviso">(ligue o som, tem música)</p>
 </div>
 
 <div id="radio" class="mudo" role="group" aria-label="Controle da música">
-  <span id="led" aria-hidden="true"></span>
+  <span class="fita" aria-hidden="true"><span class="reel"></span><span class="reel"></span></span>
   <span class="faixa">♪ <b>Eulogy</b></span>
   <button id="mutar" aria-label="Mutar ou ativar o som" aria-pressed="true">
     <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
-    <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.4 2.4c.1-.2.1-.4.1-.6zM19 12c0 .9-.2 1.8-.5 2.600l1.500 1.500A9 9 0 0 0 21 12a9 9 0 0 0-7-8.800v2.100A7 7 0 0 1 19 12zM4.300 3 3 4.300 7.700 9H3v6h4l5 5v-6.700l4.300 4.300c-.7.500-1.400.9-2.300 1.200v2.100a9 9 0 0 0 3.600-1.800l2 2 1.300-1.300L4.300 3zM12 4 9.900 6.100 12 8.200V4z"/></svg>
+    <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.4 2.4c.1-.2.1-.4.1-.6zM19 12c0 .9-.2 1.8-.5 2.6l1.5 1.5A9 9 0 0 0 21 12a9 9 0 0 0-7-8.8v2.1A7 7 0 0 1 19 12zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.700l4.300 4.300c-.7.500-1.400.900-2.300 1.200v2.100a9 9 0 0 0 3.600-1.800l2 2 1.300-1.300L4.300 3zM12 4 9.900 6.100 12 8.200V4z"/></svg>
   </button>
   <input id="volume" type="range" min="0" max="100" value="50" aria-label="Volume da música">
 </div>
 <p id="faltaMusica">Não achei o arquivo eulogy.mp3. Coloque ele na mesma pasta do site.</p>
+
+<div id="vhs" aria-hidden="true"><i></i><b>PLAY ▶</b><br><span id="vhs-data"></span></div>
+<p id="toast" role="status"></p>
 
 <audio id="musica" src="eulogy.mp3" loop preload="auto"></audio>
 <canvas id="esporos" aria-hidden="true"></canvas>
@@ -178,6 +226,7 @@ body.ligado .hero-txt{opacity:1}
 <header id="hero">
   <div class="parede" id="parede" aria-label="Parede de luzes soletrando eu te amo"></div>
   <div class="hero-txt">
+    <p class="cap">Temporada 1 · Episódio ∞</p>
     <h1 id="nomes">Para você, meu amor</h1>
     <p>Feito pelo Atlas, só para você</p>
   </div>
@@ -185,7 +234,7 @@ body.ligado .hero-txt{opacity:1}
 </header>
 
 <section id="tempo">
-  <p class="cap">Capítulo um</p>
+  <p class="cap">Capítulo um<br>O relógio que não para</p>
   <h2>Nosso tempo juntos</h2>
   <p>Desde 22 de setembro de 2026, cada segundo ao seu lado valeu a pena. E o relógio continua rodando.</p>
   <div class="tempo" aria-live="off">
@@ -202,7 +251,7 @@ body.ligado .hero-txt{opacity:1}
 <div class="fio"></div>
 
 <section id="texto">
-  <p class="cap">Capítulo dois</p>
+  <p class="cap">Capítulo dois<br>A garota que chegou</p>
   <h2>Desde que você chegou</h2>
   <div class="arquivo">
     <span class="carimbo">Arquivo</span>
@@ -214,8 +263,29 @@ body.ligado .hero-txt{opacity:1}
 
 <div class="fio"></div>
 
+<section id="ficha">
+  <p class="cap">Capítulo três<br>Hellfire Club</p>
+  <h2>Ficha de personagem</h2>
+  <div class="ficha">
+    <span class="carimbo">Nível ∞</span>
+    <span class="tat" title="22/09/26">220926</span>
+    <p class="classe">Classe: Mestra da Fofoca</p>
+    <div class="stat"><div class="nome"><span>Beleza</span><em>20/20 (estourou a escala)</em></div><div class="barra"><i data-v="100"></i></div></div>
+    <div class="stat"><div class="nome"><span>Carisma</span><em>20/20</em></div><div class="barra"><i data-v="100"></i></div></div>
+    <div class="stat"><div class="nome"><span>Fofoca</span><em>20/20</em></div><div class="barra"><i data-v="100"></i></div></div>
+    <div class="stat"><div class="nome"><span>Capacidade de me fazer sorrir</span><em>20/20</em></div><div class="barra"><i data-v="100"></i></div></div>
+    <div class="stat"><div class="nome"><span>Tempo no banheiro</span><em>19/20 (crítico)</em></div><div class="barra"><i data-v="95"></i></div></div>
+    <div class="stat"><div class="nome"><span>Paciência no Free Fire</span><em>3/20</em></div><div class="barra"><i data-v="15"></i></div></div>
+  </div>
+  <div class="d20" id="d20" aria-live="polite">20</div>
+  <p id="d20-res"></p>
+  <button class="btn" id="btn-d20">🎲 Rolar d20 contra o meu amor</button>
+</section>
+
+<div class="fio"></div>
+
 <section id="motivos">
-  <p class="cap">Capítulo três</p>
+  <p class="cap">Capítulo quatro<br>As luzes</p>
   <h2>Motivos pelos quais eu te amo</h2>
   <p class="dica" id="dica">Toque na luz</p>
   <button class="lampada" id="btn-motivo" aria-label="Mostrar um motivo"><i></i></button>
@@ -224,8 +294,27 @@ body.ligado .hero-txt{opacity:1}
 
 <div class="fio"></div>
 
+<section id="sinal-sec">
+  <p class="cap">Capítulo cinco<br>O sinal do outro lado</p>
+  <h2>Fale comigo pelas luzes</h2>
+  <p>Escreva uma mensagem, ou toque direto nas letras. A parede responde.</p>
+  <div class="parede sinal" id="parede2"></div>
+  <p id="leitura" aria-live="polite"></p>
+  <div class="controles">
+    <input id="msg" type="text" maxlength="24" placeholder="digite aqui" aria-label="Mensagem para a parede de luzes" autocomplete="off">
+    <button class="btn" id="btn-sinal">Enviar sinal</button>
+  </div>
+  <div class="preset">
+    <button class="btn" data-msg="Estou aqui">Cadê você?</button>
+    <button class="btn" data-msg="Te amo">Como você se sente?</button>
+    <button class="btn" data-msg="Para sempre">Até quando?</button>
+  </div>
+</section>
+
+<div class="fio"></div>
+
 <section id="carta-sec">
-  <p class="cap">Capítulo quatro</p>
+  <p class="cap">Capítulo seis<br>A mensagem interceptada</p>
   <h2>Uma carta para você</h2>
   <div class="carta" id="carta" role="button" tabindex="0" aria-expanded="false">
     <div class="envelope"><small>Mensagem interceptada</small>Toque para abrir ✉</div>
@@ -236,6 +325,7 @@ body.ligado .hero-txt{opacity:1}
         <p>Obrigado por não desistir de mim, por me apoiar e por estar sempre do meu lado. Você me faz bem, e eu quero ser alguém melhor por você, todos os dias.</p>
         <p>Também quero agradecer pelas coisas importantes da vida: as fofocas, as partidas de Free Fire em que você quase quebra o celular e as vezes em que eu fico esperando você sair do banheiro. Contigo, até isso é bom kkk.</p>
         <p>Prometo continuar escolhendo você, hoje, amanhã e em todas as manhãs que vierem. (Só me avisa se for demorar mais de uma hora no banheiro.)</p>
+        <p>Amigos não mentem. Então, sem mentira nenhuma: eu te amo.</p>
         <p>P.S.: Se o mundo virar de cabeça para baixo, eu continuo sendo seu.</p>
         <p class="assin">Com todo o meu amor,<br><span id="assina">Atlas</span></p>
       </div>
@@ -244,12 +334,30 @@ body.ligado .hero-txt{opacity:1}
 </section>
 
 <section id="fim">
+  <p class="cap">Capítulo final<br>Eu e você</p>
   <p class="grande">Eu te amo</p>
   <p class="sub">Hoje, amanhã e sempre.</p>
   <div class="botoes">
-    <button id="btn-chuva" aria-label="Chuva de luzes">✨ Chuva de luzes</button>
-    <button id="btn-inverter" aria-pressed="false">🔄 Virar o mundo</button>
+    <button class="btn" id="btn-chuva" aria-label="Chuva de luzes">✨ Chuva de luzes</button>
+    <button class="btn" id="btn-inverter" aria-pressed="false">🔄 Virar o mundo</button>
+    <button class="btn" id="btn-eggo">🧇 Eggo</button>
   </div>
+  <p class="segredo">Existe um portal secreto nesta página. Dica: um código clássico de videogame.</p>
+</section>
+
+<section id="creditos">
+  <p class="cap">Fim do episódio</p>
+  <div class="cred">
+    <b>Estrelando</b><span>Você</span>
+    <b>Dirigido por</b><span id="diretor">Atlas</span>
+    <b>Roteiro</b><span>Fofocas e conversas aleatórias</span>
+    <b>Trilha sonora</b><span>Eulogy</span>
+    <b>Efeitos especiais</b><span>Luzinhas de Natal</span>
+    <b>Fotografia</b><span>O seu sorriso</span>
+    <b>Dublê de banheiro</b><span>Ninguém aguenta tanto tempo</span>
+    <b>Participação especial</b><span>Free Fire e um celular quase quebrado</span>
+  </div>
+  <p class="prox">Na próxima temporada: nossa vida inteira<small>Renovada. Sem data para acabar.</small></p>
 </section>
 
 </main>
@@ -262,7 +370,7 @@ const CONFIG = {
   titulo: "Para você, meu amor",
   assinatura: "Atlas",
   inicio: "2026-09-22T00:00:00",
-  mensagemLuzes: "EU TE AMO",              // frase soletrada na parede de luzes (só letras)
+  mensagemLuzes: "EU TE AMO",              // frase soletrada na parede do topo (só letras)
   volumeInicial: 50,                       // 0 a 100
   motivos: [
     "Seu sorriso conserta qualquer dia ruim.",
@@ -278,10 +386,44 @@ const CONFIG = {
 };
 /* ========================================== */
 
-document.getElementById("nomes").textContent = CONFIG.titulo;
-document.getElementById("assina").textContent = CONFIG.assinatura;
-const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = id => document.getElementById(id);
+const espera = ms => new Promise(r=>setTimeout(r,ms));
+const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const limpar = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase().replace(/[^A-Z ]/g,"");
+$("nomes").textContent = CONFIG.titulo;
+$("assina").textContent = CONFIG.assinatura;
+$("diretor").textContent = CONFIG.assinatura;
+
+/* ---- Utilidades ---- */
+function aviso(txt){
+  const t = $("toast"); t.textContent = txt; t.classList.add("v");
+  clearTimeout(aviso.t); aviso.t = setTimeout(()=>t.classList.remove("v"), 3800);
+}
+function relampago(){ const r = $("raio"); r.classList.remove("zap"); void r.offsetWidth; r.classList.add("zap"); }
+function setInvertido(on){
+  document.body.classList.toggle("invertido", on);
+  $("btn-inverter").setAttribute("aria-pressed", String(on));
+}
+function chover(simb, n){
+  if(reduz) return;
+  const box = $("chuva");
+  for(let i=0;i<n;i++){
+    const p = document.createElement("span"); p.className = "pet";
+    p.textContent = simb[i % simb.length];
+    p.style.left = Math.random()*100 + "vw"; p.style.fontSize = (1+Math.random()*1.4) + "rem";
+    p.style.animationDuration = (4+Math.random()*4) + "s"; p.style.animationDelay = Math.random()*2 + "s";
+    box.appendChild(p); setTimeout(()=>p.remove(), 10000);
+  }
+}
+
+/* ---- Relógio de VHS ---- */
+(function(){
+  function t(){
+    const d = new Date();
+    $("vhs-data").textContent = d.toLocaleDateString("pt-BR",{day:"2-digit",month:"short",year:"numeric"}).replace(/\./g,"").toUpperCase() + "  " + d.toLocaleTimeString("pt-BR");
+  }
+  t(); setInterval(t, 1000);
+})();
 
 /* ---- Música, mudo e volume ---- */
 (function(){
@@ -314,33 +456,58 @@ const $ = id => document.getElementById(id);
   estado();
 })();
 
-/* ---- Parede de luzes (alfabeto) ---- */
-const cores = ["#ff3b3b","#3bd1ff","#ffd23b","#7dff5a","#ff5ad1","#ff8c2e","#a97bff"];
-const celulas = {};
+/* ---- Sequência de boot do laboratório ---- */
 (function(){
-  const par = $("parede"), linhas = ["ABCDEFGHI","JKLMNOPQR","STUVWXYZ"];
+  const linhas = [
+    "> HAWKINS NATIONAL LABORATORY / ACESSO RESTRITO",
+    "> verificando credencial... OK",
+    "> sinal detectado do outro lado do portal",
+    "> mensagem criptografada: [ eu te amo ]",
+    "> descriptografando coração... 100%"
+  ];
+  const el = $("boot"), btn = $("entrar"); let pulou = false;
+  const fim = ()=>{ pulou = true; el.textContent = linhas.join("\n"); btn.classList.add("vis"); };
+  $("entrada").addEventListener("click", e=>{ if(e.target !== btn) fim(); });
+  (async function(){
+    if(reduz){ fim(); return; }
+    for(const l of linhas){
+      for(const ch of l){ if(pulou) return; el.textContent += ch; await espera(16); }
+      el.textContent += "\n"; await espera(260);
+    }
+    if(!pulou) fim();
+  })();
+})();
+
+/* ---- Paredes de luzes ---- */
+const cores = ["#ff3b3b","#3bd1ff","#ffd23b","#7dff5a","#ff5ad1","#ff8c2e","#a97bff"];
+function construirParede(par, interativa){
+  const mapa = {}, linhas = ["ABCDEFGHI","JKLMNOPQR","STUVWXYZ"];
   let k = 0;
   linhas.forEach(l=>{
     const d = document.createElement("div"); d.className = "linha"; d.style.setProperty("--n", l.length);
     for(const ch of l){
-      const c = document.createElement("div"); c.className = "celula";
+      const c = document.createElement(interativa ? "button" : "div"); c.className = "celula";
+      if(interativa){ c.type = "button"; c.setAttribute("aria-label","Letra " + ch); }
       c.innerHTML = '<div class="bulbo"></div><span>' + ch + '</span>';
       c.querySelector(".bulbo").style.setProperty("--c", cores[k++ % cores.length]);
-      d.appendChild(c); celulas[ch] = c;
+      d.appendChild(c); mapa[ch] = c;
     }
     par.appendChild(d);
   });
-})();
+  return mapa;
+}
+const heroCel = construirParede($("parede"), false);
+const sinalCel = construirParede($("parede2"), true);
+
 function acenderParede(){
-  const msg = CONFIG.mensagemLuzes.toUpperCase();
-  if(reduz){ for(const ch of new Set(msg.replace(/[^A-Z]/g,""))) celulas[ch].classList.add("on"); return; }
-  const espera = ms => new Promise(r=>setTimeout(r,ms));
+  const msg = limpar(CONFIG.mensagemLuzes);
+  if(reduz){ for(const ch of new Set(msg.replace(/ /g,""))) if(heroCel[ch]) heroCel[ch].classList.add("on"); return; }
   (async function loop(){
     await espera(2500);
     while(true){
       for(const ch of msg){
         if(ch === " "){ await espera(900); continue; }
-        const c = celulas[ch]; if(!c) continue;
+        const c = heroCel[ch]; if(!c) continue;
         c.classList.add("on"); await espera(180); c.classList.remove("on"); await espera(60);
         c.classList.add("on"); await espera(650); c.classList.remove("on"); await espera(180);
       }
@@ -349,7 +516,33 @@ function acenderParede(){
   })();
 }
 
-/* ---- Esporos do Mundo Invertido ---- */
+/* ---- Parede interativa (Capítulo cinco) ---- */
+(function(){
+  let token = 0; const lei = $("leitura");
+  async function soletrar(texto){
+    const meu = ++token; lei.textContent = ""; texto = limpar(texto);
+    for(const ch of texto){
+      if(meu !== token) return;
+      if(ch === " "){ lei.textContent += " "; await espera(700); continue; }
+      const c = sinalCel[ch]; if(!c) continue;
+      c.classList.add("on"); lei.textContent += ch; await espera(550); c.classList.remove("on"); await espera(200);
+    }
+  }
+  for(const ch in sinalCel){
+    sinalCel[ch].addEventListener("click", async ()=>{
+      token++;
+      if(lei.textContent.length >= 24) lei.textContent = "";
+      lei.textContent += ch;
+      const c = sinalCel[ch]; c.classList.add("on"); await espera(450); c.classList.remove("on");
+    });
+  }
+  const enviar = ()=>{ const v = $("msg").value.trim(); if(v) soletrar(v); };
+  $("btn-sinal").addEventListener("click", enviar);
+  $("msg").addEventListener("keydown", e=>{ if(e.key === "Enter") enviar(); });
+  document.querySelectorAll(".preset .btn").forEach(b=>b.addEventListener("click", ()=>soletrar(b.dataset.msg)));
+})();
+
+/* ---- Esporos / cinzas ---- */
 (function(){
   const c = $("esporos"), x = c.getContext("2d");
   let W, H, P = [];
@@ -359,25 +552,24 @@ function acenderParede(){
   for(let i=0;i<n;i++) P.push({ x:Math.random()*W, y:Math.random()*H, r:.6+Math.random()*2, v:.15+Math.random()*.45, f:Math.random()*6, a:.2+Math.random()*.5 });
   function quadro(t){
     x.clearRect(0,0,W,H);
-    const inv = document.body.classList.contains("invertido");
+    const inv = document.body.classList.contains("invertido"), dir = inv ? -1 : 1;
     for(const p of P){
-      p.y -= p.v; p.x += Math.sin(t/1800 + p.f)*.3;
-      if(p.y < -5){ p.y = H + 5; p.x = Math.random()*W; }
+      p.y -= p.v*dir; p.x += Math.sin(t/1800 + p.f)*.3;
+      if(p.y < -5) p.y = H + 5;
+      if(p.y > H + 5) p.y = -5;
       x.beginPath(); x.arc(p.x, p.y, p.r, 0, 6.283);
-      x.fillStyle = (inv ? "rgba(140,200,255," : "rgba(255,225,225,") + (p.a*(.6+.4*Math.sin(t/700+p.f))) + ")";
+      x.fillStyle = (inv ? "rgba(150,205,255," : "rgba(255,225,225,") + (p.a*(.6+.4*Math.sin(t/700+p.f))) + ")";
       x.shadowColor = inv ? "rgba(80,170,255,.9)" : "rgba(229,9,20,.8)"; x.shadowBlur = 8; x.fill();
     }
     if(!reduz) requestAnimationFrame(quadro);
   }
   requestAnimationFrame(quadro);
-  if(!reduz) (function raio(){
-    setTimeout(()=>{ const r = $("raio"); r.classList.remove("zap"); void r.offsetWidth; r.classList.add("zap"); raio(); }, 9000 + Math.random()*9000);
-  })();
+  if(!reduz) (function raio(){ setTimeout(()=>{ relampago(); raio(); }, 9000 + Math.random()*9000); })();
 })();
 
 /* ---- Contador ---- */
 (function(){
-  const ini = new Date(CONFIG.inicio), el = id => document.getElementById(id);
+  const ini = new Date(CONFIG.inicio);
   function tick(){
     const ag = new Date(); let a = ag.getFullYear()-ini.getFullYear(), m = ag.getMonth()-ini.getMonth();
     let ref = new Date(ini); ref.setFullYear(ini.getFullYear()+a, ini.getMonth()+m);
@@ -385,10 +577,38 @@ function acenderParede(){
     let s = Math.floor((ag-ref)/1000);
     const d = Math.floor(s/86400); s%=86400;
     const h = Math.floor(s/3600); s%=3600;
-    el("t-anos").textContent = a; el("t-meses").textContent = m; el("t-dias").textContent = d;
-    el("t-horas").textContent = h; el("t-min").textContent = Math.floor(s/60); el("t-seg").textContent = s%60;
+    $("t-anos").textContent = a; $("t-meses").textContent = m; $("t-dias").textContent = d;
+    $("t-horas").textContent = h; $("t-min").textContent = Math.floor(s/60); $("t-seg").textContent = s%60;
   }
   tick(); setInterval(tick, 1000);
+})();
+
+/* ---- Ficha: barras e d20 ---- */
+(function(){
+  const barras = document.querySelectorAll(".barra i");
+  const encher = b => b.style.width = b.dataset.v + "%";
+  if("IntersectionObserver" in window){
+    const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ encher(e.target); io.unobserve(e.target); } }), {threshold:.4});
+    barras.forEach(b=>io.observe(b));
+  } else barras.forEach(encher);
+
+  const btn = $("btn-d20"), el = $("d20"), res = $("d20-res");
+  const texto = v => v === 20 ? "SUCESSO CRÍTICO! Você ganhou um beijo meu, agora mesmo."
+    : v === 1 ? "FALHA CRÍTICA! Você se apaixonou ainda mais."
+    : "Você rolou " + v + ". Contra o meu amor, o teste de resistência sempre falha.";
+  btn.addEventListener("click", ()=>{
+    btn.disabled = true; res.textContent = ""; el.classList.add("rola");
+    let n = 0;
+    const iv = setInterval(()=>{
+      el.textContent = 1 + Math.floor(Math.random()*20);
+      if(++n >= (reduz ? 1 : 9)){
+        clearInterval(iv); el.classList.remove("rola");
+        const v = 1 + Math.floor(Math.random()*20);
+        el.textContent = v; res.textContent = texto(v); btn.disabled = false;
+        if(v === 20) chover(["🎲","✨","💗"], 30);
+      }
+    }, 110);
+  });
 })();
 
 /* ---- Motivos (lâmpada) ---- */
@@ -396,8 +616,7 @@ function acenderParede(){
   const btn = $("btn-motivo"), box = $("motivo"), dica = $("dica"), sec = $("motivos");
   let i = 0;
   btn.addEventListener("click", ()=>{
-    const cor = cores[i % cores.length];
-    sec.style.setProperty("--cor", cor);
+    sec.style.setProperty("--cor", cores[i % cores.length]);
     dica.textContent = i < CONFIG.motivos.length ? "Mais um motivo?" : "Tenho mais um milhão deles";
     box.classList.add("sai");
     setTimeout(()=>{
@@ -415,24 +634,21 @@ function acenderParede(){
   c.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrir(); } });
 })();
 
-/* ---- Mundo invertido ---- */
-$("btn-inverter").addEventListener("click", e=>{
-  const on = document.body.classList.toggle("invertido");
-  e.currentTarget.setAttribute("aria-pressed", String(on));
-});
+/* ---- Botões finais e segredos ---- */
+$("btn-chuva").addEventListener("click", ()=>chover(["🔴","💡","✨","❤️","🔵","🟡"], 40));
+$("btn-inverter").addEventListener("click", ()=>{ const on = !document.body.classList.contains("invertido"); setInvertido(on); relampago(); });
+$("btn-eggo").addEventListener("click", ()=>{ chover(["🧇"], 36); aviso("Uma pilha de waffles para a minha pessoa favorita 🧇"); });
 
-/* ---- Chuva de luzes ---- */
-$("btn-chuva").addEventListener("click", ()=>{
-  if(reduz) return;
-  const box = $("chuva"), simb = ["🔴","💡","✨","❤️","🔵","🟡"];
-  for(let i=0;i<40;i++){
-    const p = document.createElement("span"); p.className = "pet";
-    p.textContent = simb[i % simb.length];
-    p.style.left = Math.random()*100 + "vw"; p.style.fontSize = (1+Math.random()*1.4) + "rem";
-    p.style.animationDuration = (4+Math.random()*4) + "s"; p.style.animationDelay = Math.random()*2 + "s";
-    box.appendChild(p); setTimeout(()=>p.remove(), 10000);
-  }
-});
+(function(){
+  const seq = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"]; let k = 0;
+  addEventListener("keydown", e=>{
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if(key === seq[k]){
+      k++;
+      if(k === seq.length){ k = 0; setInvertido(true); relampago(); chover(["🔴","💡","🔵"], 40); aviso("VOCÊ ACHOU O PORTAL SECRETO. BEM-VINDA AO OUTRO LADO."); }
+    } else k = key === seq[0] ? 1 : 0;
+  });
+})();
 </script>
 </body>
 </html>
